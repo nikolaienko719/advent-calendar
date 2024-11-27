@@ -96,22 +96,31 @@
 const urlParams = new URLSearchParams(window.location.search);
 const doneTasksParam = urlParams.get('doneTasks');
 
-try {
-  // Перевіряємо, чи є параметр doneTasks
-  if (doneTasksParam) {
-    // Розбираємо масив doneTasks
-    const doneTasks = JSON.parse(decodeURIComponent(doneTasksParam));
-    console.log('Received doneTasks:', doneTasks);
+// try {
+//   // Перевіряємо, чи є параметр doneTasks
+//   if (doneTasksParam) {
+//     // Розбираємо масив doneTasks
+//     const doneTasks = JSON.parse(decodeURIComponent(doneTasksParam));
+//     console.log('Received doneTasks:', doneTasks);
 
-    // Викликаємо функцію обробки doneTasks
-    replaceDayBlock(doneTasks);
-  } else {
-    console.log('No doneTasks provided. Loading default page.');
-    loadDefaultPage();
-  }
-} catch (error) {
-  console.error('Error parsing doneTasks:', error);
-  loadDefaultPage(); // Завантажуємо стандартну сторінку при помилці
+//     // Викликаємо функцію обробки doneTasks
+//     replaceDayBlock(doneTasks);
+//   } else {
+//     console.log('No doneTasks provided. Loading default page.');
+//     loadDefaultPage();
+//   }
+// } catch (error) {
+//   console.error('Error parsing doneTasks:', error);
+//   loadDefaultPage(); // Завантажуємо стандартну сторінку при помилці
+// }
+
+if (doneTasksParam) {
+  // Розбираємо масив doneTasks
+  const doneTasks = JSON.parse(decodeURIComponent(doneTasksParam));
+  console.log('Received doneTasks:', doneTasks);
+
+  // Викликаємо функцію обробки doneTasks
+  replaceDayBlock(doneTasks);
 }
 
 // Функція заміни блоків
