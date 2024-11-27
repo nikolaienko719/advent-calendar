@@ -99,26 +99,62 @@ $(document).on('click', '.dayBlock', function () {
 });
 
 $(document).ready(function () {
-  // Відкриття модального вікна
+  // Поточна дата
+  var d = new Date();
+  var todaysDate = d.getDate();
+
+  // Додаємо класи для днів
+  $('.dayBlock').each(function () {
+    var day = parseInt($(this).find('#dayNumber').html()); // Отримуємо число дня
+    if (todaysDate == day) {
+      $(this).addClass('today');
+    }
+    if (todaysDate < day) {
+      $(this).addClass('future');
+    }
+    if (todaysDate > day) {
+      $(this).addClass('past');
+    }
+  });
+
+  // Відкриття відповідної модалки
   $('.dayBlock').click(function () {
-    // Відкриваємо backdrop і surprise для конкретного блоку
-    $(this).find('.surprise-backdrop').addClass('open');
-    $(this).find('.surprise').addClass('open');
+    var day = parseInt($(this).find('#dayNumber').html()); // Читаємо число з <p id="dayNumber">
+    
+    if (todaysDate > day) {
+      // Якщо дата в минулому, відкриваємо стандартну модалку
+      $(this).find('.surprise-backdrop').addClass('open');
+      $(this).find('.surprise').addClass('open');
+    } else if (todaysDate < day) {
+      // Якщо дата в майбутньому, відкриваємо модалку "Ти не гадалка"
+      $(this).find('.futureModal-backdrop').addClass('open');
+      $(this).find('.futureModal').addClass('open');
+    }
   });
 
-  // Закриття модального вікна
-  $('.close').click(function () {
-    // Закриваємо backdrop і surprise у батьківському .dayBlock
-    $(this).closest('.dayBlock').find('.surprise-backdrop').removeClass('open');
-    $(this).closest('.dayBlock').find('.surprise').removeClass('open');
+  // Закриття стандартного модального вікна
+  $(document).on('click', '.surprise .close', function () {
+    $(this).closest('.surprise').removeClass('open'); // Закриваємо модалку
+    $(this).closest('.dayBlock').find('.surprise-backdrop').removeClass('open'); // Закриваємо backdrop
   });
 
-  // Закриття модального вікна по кліку на backdrop
-  $('.surprise-backdrop').click(function () {
+  // Закриття модалки "Ти не гадалка"
+  $(document).on('click', '.futureModal .close', function () {
+    $(this).closest('.futureModal').removeClass('open'); // Закриваємо майбутню модалку
+    $(this).closest('.dayBlock').find('.futureModal-backdrop').removeClass('open'); // Закриваємо backdrop
+  });
+
+  // Закриття будь-якої модалки через backdrop
+  $(document).on('click', '.surprise-backdrop, .futureModal-backdrop', function () {
     $(this).removeClass('open'); // Закриваємо backdrop
-    $(this).siblings('.surprise').removeClass('open'); // Закриваємо модалку
+    $(this).siblings('.surprise, .futureModal').removeClass('open'); // Закриваємо відповідну модалку
   });
 });
+
+
+
+
+
 
 
 
