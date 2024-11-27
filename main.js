@@ -99,14 +99,27 @@ $(document).on('click', '.dayBlock', function () {
 });
 
 $(document).ready(function () {
-  $('.dayBlock').click(function(){
-    $('.surprise').addClass('open');
+  // Відкриття модального вікна
+  $('.dayBlock').click(function () {
+    // Відкриваємо backdrop і surprise для конкретного блоку
+    $(this).find('.surprise-backdrop').addClass('open');
+    $(this).find('.surprise').addClass('open');
   });
-  
-  $('.surprise .close').click(function(){
-    $('.surprise').removeClass('open');
+
+  // Закриття модального вікна
+  $('.close').click(function () {
+    // Закриваємо backdrop і surprise у батьківському .dayBlock
+    $(this).closest('.dayBlock').find('.surprise-backdrop').removeClass('open');
+    $(this).closest('.dayBlock').find('.surprise').removeClass('open');
+  });
+
+  // Закриття модального вікна по кліку на backdrop
+  $('.surprise-backdrop').click(function () {
+    $(this).removeClass('open'); // Закриваємо backdrop
+    $(this).siblings('.surprise').removeClass('open'); // Закриваємо модалку
   });
 });
+
 
 
 // Зчитуємо параметри URL

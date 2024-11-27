@@ -126,35 +126,101 @@ button {
 }
 
 .surprise {
-    position: fixed; /* Фіксується відносно вікна браузера */
+    position: fixed;
+    /* Фіксується відносно вікна браузера */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Центрування по обох осях */
-    @include transform(translate(-50%, -50%) scale(0.9));
-    overflow-y: auto; 
-    box-shadow: 0px 6px 30px rgba(0,0,0,0.4);
+    transform: translate(-50%, -50%);
+    /* Центрування по обох осях */
+    overflow-y: auto;
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.4);
     visibility: hidden;
     opacity: 0;
-    @include transition(all .3s);
+    transition: all 0.3s;
+    /* Анімація при відкритті */
     z-index: 10;
-    background-color: rgba(221, 89, 115);
+    background-color: #FFEEAD;
+    width: 500px;
+    /* Фіксована ширина */
+    height: 300px;
+    /* Фіксована висота */
+    border-radius: 10px;
+    /* Додає згладжені кути */
+    cursor: default;
+    color: #A02334;
+    
+}
+
+/* Стилі для фону */
+.surprise-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    
-    @media (min-width: 768px) {
-      width: calc(100% - 40px);
-      height: auto;
-      max-width: 900px;
+    background-color: #426658a5;
+    z-index: 9;
+    display: none;
+    /* Початково приховане */
+}
+
+.surprise-backdrop.open {
+    display: block;
+    /* Початково приховане */
+}
+
+
+/* Медіазапит для більших екранів */
+@media (min-width: 768px) {
+    .surprise {
+        max-width: 500px;
+        /* Залишає розмір 300px */
+        max-height: 500px;
+        /* Залишає розмір 200px */
     }
-
-    &.open {
-        visibility: visible;
-        opacity: 1;
-        @include transform(translate(-50%, -50%) scale(1));
-}
 }
 
+/* Стиль для відкритої модалки */
+.surprise.open {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    /* Масштаб при відкритті */
+}
 
+.close {
+    position: absolute;
+        /* Фіксується відносно вікна браузера */
+        top: 5%;
+        right: 5%;
+        font-weight: bold;
+        font-size: 26px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        color: #A02334;
+}
 
+.close:hover {
+    background: #A02334;
+    cursor: pointer;
+    border-radius: 50%;
+    color: #FFEEAD;
+
+}
+
+.modalText {
+    padding: 60px 20px;
+}
+
+.modalTask {
+    text-align: center;
+    
+}
+
+.modalText p {
+    color: #A02334;
+    font-size: 22px;
+}
 
 
