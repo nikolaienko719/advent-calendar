@@ -96,23 +96,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const doneTasksParam = urlParams.get('doneTasks');
 
-// try {
-//   // Перевіряємо, чи є параметр doneTasks
-//   if (doneTasksParam) {
-//     // Розбираємо масив doneTasks
-//     const doneTasks = JSON.parse(decodeURIComponent(doneTasksParam));
-//     console.log('Received doneTasks:', doneTasks);
 
-//     // Викликаємо функцію обробки doneTasks
-//     replaceDayBlock(doneTasks);
-//   } else {
-//     console.log('No doneTasks provided. Loading default page.');
-//     loadDefaultPage();
-//   }
-// } catch (error) {
-//   console.error('Error parsing doneTasks:', error);
-//   loadDefaultPage(); // Завантажуємо стандартну сторінку при помилці
-// }
 
 if (doneTasksParam) {
   // Розбираємо масив doneTasks
@@ -139,10 +123,87 @@ function replaceDayBlock(doneTasks) {
       originalDiv.parentNode.replaceChild(newDiv, originalDiv);
     }
   }
-  if (doneTasks.includes(3)) {
-    const originalDiv = document.querySelector('.day3');
+  if (doneTasks.includes(4)) {
+    const originalDiv = document.querySelector('.day4');
     if (originalDiv) {
-      const newDiv = createDoneDiv('day3done');
+      const newDiv = createDoneDiv('day4done');
+      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
+    }
+  }
+  if (doneTasks.includes(5)) {
+    const originalDiv = document.querySelector('.day5');
+    if (originalDiv) {
+      const newDiv = createDoneDiv('day5done');
+      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
+    }
+  }
+  if (doneTasks.includes(6)) {
+    const originalDiv = document.querySelector('.day6');
+    if (originalDiv) {
+      const newDiv = createDoneDiv('day6done');
+      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
+    }
+  }
+  if (doneTasks.includes(7)) {
+    const originalDiv = document.querySelector('.day7');
+    if (originalDiv) {
+      const newDiv = createDoneDiv('day7done');
+      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
+    }
+  }
+  if (doneTasks.includes(8)) {
+    const originalDiv = document.querySelector('.day8');
+    if (originalDiv) {
+      const newDiv = createDoneDiv('day8done');
+      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
+    }
+  }
+  if (doneTasks.includes(9)) {
+    const originalDiv = document.querySelector('.day9');
+    if (originalDiv) {
+      const newDiv = createDoneDiv('day9done');
+      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
+    }
+  }
+  if (doneTasks.includes(10)) {
+    const originalDiv = document.querySelector('.day10');
+    if (originalDiv) {
+      const newDiv = createDoneDiv('day10done');
+      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
+    }
+  }
+  if (doneTasks.includes(11)) {
+    const originalDiv = document.querySelector('.day11');
+    if (originalDiv) {
+      const newDiv = createDoneDiv('day11done');
+      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
+    }
+  }
+  if (doneTasks.includes(12)) {
+    const originalDiv = document.querySelector('.day12');
+    if (originalDiv) {
+      const newDiv = createDoneDiv('day12done');
+      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
+    }
+  }
+  if (doneTasks.includes(13)) {
+    const originalDiv = document.querySelector('.day13');
+    if (originalDiv) {
+      const newDiv = createDoneDiv('day13done');
+      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
+    }
+  }
+  if (doneTasks.includes(14)) {
+    const originalDiv = document.querySelector('.day14');
+    if (originalDiv) {
+      const newDiv = createDoneDiv('day14done');
+      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
+    }
+  }
+  if (doneTasks.includes(15)) {
+    const originalDiv = document.querySelector('.day15');
+    if (originalDiv) {
+      const newDiv = createDoneDiv('day15done');
       originalDiv.parentNode.replaceChild(newDiv, originalDiv);
     }
   }
