@@ -92,6 +92,23 @@
 // replaceDayBlock(doneTasks);
 
 
+// 
+
+$(document).on('click', '.dayBlock', function () {
+  console.log('Clicked!');
+});
+
+$(document).ready(function () {
+  $('.dayBlock').click(function(){
+    $('.surprise').addClass('open');
+  });
+  
+  $('.surprise .close').click(function(){
+    $('.surprise').removeClass('open');
+  });
+});
+
+
 // Зчитуємо параметри URL
 const urlParams = new URLSearchParams(window.location.search);
 const doneTasksParam = urlParams.get('doneTasks');

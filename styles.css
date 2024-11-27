@@ -60,6 +60,7 @@ img {
     justify-content: center;
     border-radius: 20px;
     border: 5px solid rgb(44, 106, 86);
+    pointer-events: auto;
 }
 
 
@@ -125,32 +126,35 @@ button {
 }
 
 .surprise {
-    display: none;
-    position: fixed;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.25);
+    position: fixed; /* Фіксується відносно вікна браузера */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрування по обох осях */
+    @include transform(translate(-50%, -50%) scale(0.9));
+    overflow-y: auto; 
+    box-shadow: 0px 6px 30px rgba(0,0,0,0.4);
+    visibility: hidden;
+    opacity: 0;
+    @include transition(all .3s);
+    z-index: 10;
+    background-color: rgba(221, 89, 115);
+    width: 100%;
+    height: 100%;
+    
+    @media (min-width: 768px) {
+      width: calc(100% - 40px);
+      height: auto;
+      max-width: 900px;
+    }
+
+    &.open {
+        visibility: visible;
+        opacity: 1;
+        @include transform(translate(-50%, -50%) scale(1));
+}
 }
 
-.modalContent {
-    background-color: white;
-    position: absolute;
-    top: 20%;
-    left: 30%;
-    width: 40%;
-    padding: 20px;
-    border-radius: 5px;
-    border: 2px solid black;
-}
 
-.close {
-    color: Black;
-    float: right;
-}
 
-.close:hover {
-    color: red;
-    cursor: pointer;
-}
+
 
