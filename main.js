@@ -200,6 +200,8 @@ function createDoneDiv(doneClass) {
   img.id = 'meme-img';
   img.src = 'images/image_1.jpg';
   img.alt = '';
+  img.width = '200';
+  img.aheight = '200';
 
   newDiv.appendChild(img);
   return newDiv;
