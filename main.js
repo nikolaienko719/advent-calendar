@@ -189,6 +189,13 @@ function replaceDayBlock(doneTasks) {
       originalDiv.parentNode.replaceChild(newDiv, originalDiv);
     }
   }
+  if (doneTasks.includes(3)) {
+    const originalDiv = document.querySelector('.day3');
+    if (originalDiv) {
+      const newDiv = createDoneDiv('day3done');
+      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
+    }
+  }
   if (doneTasks.includes(4)) {
     const originalDiv = document.querySelector('.day4');
     if (originalDiv) {
