@@ -62,11 +62,25 @@ $(document).ready(function () {
     }
   });
 
-  // Закриття модалок
-  $('.close').click(function () {
-    $('.surprise-backdrop, .surprise, .futureModal-backdrop, .futureModal').removeClass('open');
+  // Закриття стандартного модального вікна
+  $(document).on('click', '.surprise .close', function () {
+    $(this).closest('.surprise').removeClass('open'); // Закриваємо модалку
+    $(this).closest('.dayBlock').find('.surprise-backdrop').removeClass('open'); // Закриваємо backdrop
+  });
+
+  // Закриття модалки "Ти не гадалка"
+  $(document).on('click', '.futureModal .close', function () {
+    $(this).closest('.futureModal').removeClass('open'); // Закриваємо майбутню модалку
+    $(this).closest('.dayBlock').find('.futureModal-backdrop').removeClass('open'); // Закриваємо backdrop
+  });
+
+  // Закриття будь-якої модалки через backdrop
+  $(document).on('click', '.surprise-backdrop, .futureModal-backdrop', function () {
+    $(this).removeClass('open'); // Закриваємо backdrop
+    $(this).siblings('.surprise, .futureModal').removeClass('open'); // Закриваємо відповідну модалку
   });
 });
+
 
 
 
@@ -175,27 +189,6 @@ function replaceDayBlock(doneTasks) {
       originalDiv.parentNode.replaceChild(newDiv, originalDiv);
     }
   }
-  if (doneTasks.includes(13)) {
-    const originalDiv = document.querySelector('.day13');
-    if (originalDiv) {
-      const newDiv = createDoneDiv('day13done');
-      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
-    }
-  }
-  if (doneTasks.includes(14)) {
-    const originalDiv = document.querySelector('.day14');
-    if (originalDiv) {
-      const newDiv = createDoneDiv('day14done');
-      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
-    }
-  }
-  if (doneTasks.includes(15)) {
-    const originalDiv = document.querySelector('.day15');
-    if (originalDiv) {
-      const newDiv = createDoneDiv('day15done');
-      originalDiv.parentNode.replaceChild(newDiv, originalDiv);
-    }
-  }
 }
 
 // Функція для створення нового блоку
@@ -205,10 +198,10 @@ function createDoneDiv(doneClass) {
 
   const img = document.createElement('img');
   img.id = 'meme-img';
-  img.src = 'images/cat.png';
+  img.src = 'images/image_1.jpg';
   img.alt = '';
-  img.width = 150;
-  img.height = 150;
+  img.width = 200;
+  img.height = 200;
 
   newDiv.appendChild(img);
   return newDiv;
