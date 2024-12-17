@@ -1,9 +1,19 @@
 body {
     margin: 0;
     background-color: #648A7B;
+    height: 100vh;
+    background-image: url(images/christmas_background.jpg);
+    background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 }
 
 .wrapper {
+    position: relative;
+    z-index: 0;
     width: 1000px;
     height: 850px;
     padding: 40px;
@@ -13,7 +23,7 @@ body {
     top: 50%;
     left: 50%;
     border-radius: 10px;
-    box-shadow: 40px 30px 30px rgba(24, 60, 49, 0.743);
+    box-shadow: 40px 30px 30px rgba(11, 20, 17, 0.743);
     
 
 }
@@ -56,11 +66,12 @@ img {
     margin-left: auto;
     margin-right: auto;
     /* background-color: #A8E6CE; */
-    background: linear-gradient(to bottom right, #FFAD60, #96CEB4);
+    background: linear-gradient(to bottom right, #e69b55, #96CEB4);
     justify-content: center;
     border-radius: 20px;
-    border: 5px solid rgb(44, 106, 86);
+    border: 8px solid rgb(44, 106, 86);
     pointer-events: auto;
+    transition: border-color 0.2s ease;
 }
 
 
@@ -72,7 +83,7 @@ img {
         margin-right: auto;
         justify-content: center;
         border-radius: 20px;
-        border: 5px solid rgb(44, 106, 86);
+        border: 8px solid #A02334;
         overflow: hidden
 }
 
@@ -96,62 +107,50 @@ p {
         line-height: 35px;
         margin-top: auto;
         margin-bottom: auto;
+        transition: color 0.2s ease, font-size 0.2s ease;
 }
 
 .dayBlock:hover {
     background: #FFEEAD;
     cursor: pointer;
+    border-color: #A02334;
     
 }
 
-button {
-    display: block;
-    background-color: rgb(91, 233, 188);
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-    padding: 5px;
-    font-size: 18px;
-    color: rgb(21, 20, 20);
-    font-weight: 600;
-    padding: 12px 25px;
-    border-radius: 10px;
-    border: 5px solid rgb(44, 106, 86);
-    cursor: pointer;
-    outline: none;
+.dayBlock:hover #dayNumber {
+    font-size: 86px;
+        color: #A02334;
 }
 
-#btn {
-    margin-top: 20px;
-}
 
+/* Стиль для модалки */
 .surprise {
     position: fixed;
-    /* Фіксується відносно вікна браузера */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* Центрування по обох осях */
     overflow-y: auto;
     box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.4);
     visibility: hidden;
     opacity: 0;
-    transition: all 0.3s;
-    /* Анімація при відкритті */
-    z-index: 10;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 999;
+    /* Модалка поверх бекдропу */
     background-color: #FFEEAD;
     width: 500px;
-    /* Фіксована ширина */
     height: 300px;
-    /* Фіксована висота */
     border-radius: 10px;
-    /* Додає згладжені кути */
     cursor: default;
     color: #A02334;
-    
 }
 
-/* Стилі для фону */
+/* Відображення модалки */
+.surprise.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Стиль для бекдропу модалки */
 .surprise-backdrop {
     position: fixed;
     top: 0;
@@ -159,69 +158,67 @@ button {
     width: 100%;
     height: 100%;
     background-color: #426658a5;
-    z-index: 9;
-    display: none;
-    /* Початково приховане */
+    z-index: 1;
+    /* Бекдроп під модалкою */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+/* Відображення бекдропу */
 .surprise-backdrop.open {
-    display: block;
-    /* Початково приховане */
+    visibility: visible;
+    opacity: 1;
 }
 
+/* Стиль для майбутньої модалки */
 .futureModal {
     position: fixed;
-    /* Фіксується відносно вікна браузера */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* Центрування по обох осях */
     overflow-y: auto;
     box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.4);
     visibility: hidden;
     opacity: 0;
-    transition: all 0.3s;
-    /* Анімація при відкритті */
-    z-index: 10;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 999;
+    /* Модалка поверх бекдропу */
     background-color: #A02334;
     width: 500px;
-    /* Фіксована ширина */
     height: 300px;
-    /* Фіксована висота */
     border-radius: 10px;
-    /* Додає згладжені кути */
     cursor: default;
     color: #FFEEAD;
-
 }
 
+/* Відображення майбутньої модалки */
 .futureModal.open {
     visibility: visible;
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
-    /* Масштаб при відкритті */
 }
 
-/* Стилі для фону */
+/* Стиль для бекдропу майбутньої модалки */
 .futureModal-backdrop {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: #426658a5;
-    z-index: 9;
-    display: none;
-    /* Початково приховане */
+    z-index: 0;
+    /* Бекдроп під модалкою */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-
-
+/* Відображення бекдропу майбутньої модалки */
 .futureModal-backdrop.open {
-    display: block;
-    /* Початково приховане */
+    visibility: visible;
+    opacity: 1;
 }
-
 
 /* Медіазапит для більших екранів */
 @media (min-width: 768px) {
@@ -251,8 +248,18 @@ button {
 
 }
 
+.modalContent {
+    height: 100%;
+}
+
 .modalText {
-    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+
 }
 
 .modalTask {
@@ -260,9 +267,44 @@ button {
     
 }
 
+.modalText {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Розділяє верхній та нижній блок */
+    padding: 40px 20px;
+    height: 100%;
+    /* Займає всю висоту модального вікна */
+    box-sizing: border-box;
+}
+
 .modalText p {
     color: #A02334;
     font-size: 22px;
+    text-align: center;
+    margin: 0 0 auto 0;
+    /* Відштовхує вниз інші елементи */
+}
+
+.modalText .word-text,
+.modalText .format-text {
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.2;
+    /* Щільність між рядками */
+    margin: 0;
+    /* Забираємо зайві відступи */
+}
+
+.modalText .word-text {
+    margin-top: auto;
+    font-weight: 600;
+    /* Відштовхує донизу */
+}
+
+.modalText .format-text {
+    margin-top: 5px;
+    /* Мінімальний відступ між текстами */
 }
 
 .futureText {

@@ -10,10 +10,54 @@ const tasks = [
   "Покажи, як ти їси свою найулюбленішу новорічну страву!", // Завдання для дня 27
   "Скинь свою найулюбленішу фотку разом з колегою!",       // Завдання для дня 28
   "Зроби новорічну поробку!", // Завдання для дня 29
-  "Порекомендуй, який новорічний фільм подивитись колегам?",           // Завдання для дня 31
+  "Порекомендуй, який новорічний фільм подивитись колегам?",           // Завдання для дня 30
   "Поділись своєю улюбленою новорічною або різдвяною піснею!" // Завдання для дня 31
 ];
 
+const titles = [
+  "Завдання №1",       // Завдання для дня 20
+  "Завдання №2",          // Завдання для дня 21
+  "Завдання №3",  // Завдання для дня 22
+  "Завдання №4",     // Завдання для дня 23
+  "Завдання №5",// Завдання для дня 24
+  "Завдання №6",  // Завдання для дня 25
+  "Завдання №7",          // Завдання для дня 26
+  "Завдання №8", // Завдання для дня 27
+  "Завдання №9",       // Завдання для дня 28
+  "Завдання №10", // Завдання для дня 29
+  "Завдання №11",           // Завдання для дня 30
+  "Завдання №12" // Завдання для дня 31
+];
+
+const words = [
+  "christmastree",       // Завдання для дня 20
+  "santa",          // Завдання для дня 21
+  "mem",  // Завдання для дня 22
+  "sing",     // Завдання для дня 23
+  "child",// Завдання для дня 24
+  "snowman",  // Завдання для дня 25
+  "present",          // Завдання для дня 26
+  "meal", // Завдання для дня 27
+  "colleague",       // Завдання для дня 28
+  "porobka", // Завдання для дня 29
+  "film",           // Завдання для дня 30
+  "song" // Завдання для дня 31
+];
+
+const formats = [
+  "фото, відео",       // Завдання для дня 20
+  "фото",          // Завдання для дня 21
+  "фото, картинка, відео",  // Завдання для дня 22
+  "відео, аудіо",     // Завдання для дня 23
+  "фото",// Завдання для дня 24
+  "фото, відео",  // Завдання для дня 25
+  "фото, відео",          // Завдання для дня 26
+  "фото, відео", // Завдання для дня 27
+  "фото, відео",       // Завдання для дня 28
+  "фото, відео", // Завдання для дня 29
+  "текст",           // Завдання для дня 30
+  "посилання на ютуб" // Завдання для дня 31
+]
 
 // 
 
@@ -39,47 +83,59 @@ $(document).ready(function () {
       $(this).addClass('past');
     }
 
-    // Додаємо тексти завдань тільки для today і past
+    // Зберігаємо дані про завдання як data-атрибути
     if (todaysDate >= day) {
       const taskIndex = day - 1; // Індекс у масиві (починається з 0)
       const taskText = tasks[taskIndex];
-      $(this).find('.modalText p').text(taskText); // Встановлюємо текст у <p>
+      const titleText = titles[taskIndex];
+      const wordText = `Ключ-слово до завдання: ${words[taskIndex]}`; // Формуємо шаблонний текст
+      const formatText = `Формат виконання: ${formats[taskIndex]}`; // Формуємо шаблонний текст
+
+      // Додаємо дані як атрибути
+      $(this).data('title', titleText);
+      $(this).data('task', taskText);
+      $(this).data('word', wordText);
+      $(this).data('format', formatText);
     }
   });
 
   // Відкриття відповідної модалки
   $('.dayBlock').click(function () {
     var day = parseInt($(this).find('#dayNumber').html()); // Читаємо число з <p id="dayNumber">
-    
+    const $backdrop = $('.surprise-backdrop');
+    const $modal = $('.surprise');
+    const $modal2 = $('.futureModal');
+
     if ($(this).hasClass('past') || $(this).hasClass('today')) {
-      // Якщо дата в минулому або сьогодні, відкриваємо стандартну модалку із завданням
-      $(this).find('.surprise-backdrop').addClass('open');
-      $(this).find('.surprise').addClass('open');
+      // Оновлюємо текст у глобальній модалці
+      $('.modalTask').text($(this).data('title')); // Заголовок завдання
+      $('.modalText p').text($(this).data('task')); // Текст завдання
+
+      // Додаємо додаткові тексти
+      $('.modalText').append(`<p class="word-text">${$(this).data('word')}</p>`);
+      $('.modalText').append(`<p class="format-text">${$(this).data('format')}</p>`);
+
+      // Показуємо модалку
+      $backdrop.addClass('open');
+      $modal.addClass('open');
     } else if ($(this).hasClass('future')) {
-      // Якщо дата в майбутньому, відкриваємо модалку "Ти не ворожка"
-      $(this).find('.futureModal-backdrop').addClass('open');
-      $(this).find('.futureModal').addClass('open');
+      $backdrop.addClass('open');
+      $modal2.addClass('open');
     }
   });
 
-  // Закриття стандартного модального вікна
-  $(document).on('click', '.surprise .close', function () {
-    $(this).closest('.surprise').removeClass('open'); // Закриваємо модалку
-    $(this).closest('.dayBlock').find('.surprise-backdrop').removeClass('open'); // Закриваємо backdrop
-  });
+// Закриття модалок через "close" або бекдроп
+  $(document).on('click', '.close, .surprise-backdrop', function () {
+    $('.surprise, .futureModal').removeClass('open'); // Закриваємо обидві модалки
+    $('.surprise-backdrop').removeClass('open'); // Закриваємо backdrop
 
-  // Закриття модалки "Ти не гадалка"
-  $(document).on('click', '.futureModal .close', function () {
-    $(this).closest('.futureModal').removeClass('open'); // Закриваємо майбутню модалку
-    $(this).closest('.dayBlock').find('.futureModal-backdrop').removeClass('open'); // Закриваємо backdrop
-  });
-
-  // Закриття будь-якої модалки через backdrop
-  $(document).on('click', '.surprise-backdrop, .futureModal-backdrop', function () {
-    $(this).removeClass('open'); // Закриваємо backdrop
-    $(this).siblings('.surprise, .futureModal').removeClass('open'); // Закриваємо відповідну модалку
+    // Очищаємо додаткові тексти з surprise
+    $('.modalText .word-text, .modalText .format-text').remove();
   });
 });
+
+
+
 
 
 
