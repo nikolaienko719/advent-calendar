@@ -183,8 +183,12 @@ function createDoneDiv(day) {
   img.id = `meme-img-day${day}`;
   img.src = `images/image_${day}.jpg`; // Динамічний шлях до зображення
   img.alt = `Зображення для дня ${day}`;
-  img.width = 200;
-  img.height = 200;
+  
+  // Налаштування стилів через JS
+  img.style.width = '100%';
+  img.style.height = '100%';
+  img.style.objectFit = 'cover';
+  img.style.borderRadius = 'inherit';
 
   newDiv.appendChild(img);
   return newDiv;
