@@ -220,15 +220,6 @@ p {
     opacity: 1;
 }
 
-/* Медіазапит для більших екранів */
-@media (min-width: 768px) {
-    .surprise {
-        max-width: 500px;
-        /* Залишає розмір 300px */
-        max-height: 500px;
-        /* Залишає розмір 200px */
-    }
-}
 
 /* Стиль для відкритої модалки */
 .surprise.open {
@@ -364,3 +355,157 @@ p {
     color: #A02334;
 
 }
+
+
+
+/* Для екранів 1920x1080 */
+@media (max-width: 1920px) {
+    .wrapper {
+        width: auto;
+        height: 70%;
+        padding: 30px;
+    }
+
+    .calendar {
+        gap: 25px 10px;
+    }
+
+    .dayBlock,
+    .dayDone {
+        width: 150px;
+        height: 150px;
+    }
+
+    p {
+        font-size: 22px;
+        line-height: 32px;
+    }
+
+    #dayNumber {
+        font-size: 72px;
+    }
+
+    .surprise,
+    .futureModal {
+        width: 350px;
+        height: auto;
+        padding: 20px;
+    }
+
+    .modalText {
+        padding: 30px 15px;
+    }
+
+    .close {
+        font-size: 24px;
+        width: 28px;
+        height: 28px;
+    }
+
+        .modalText h2 {
+            font-size: 16px;
+        }
+
+        .modalText p {
+            font-size: 16px;
+            line-height: 1.2;
+        }
+    
+        .modalText .word-text,
+        .modalText .format-text {
+            font-size: 14px;
+            line-height: 1;
+        }
+    
+        .modalText .word-text {
+            margin-top: 15px;
+            font-weight: 400;
+        }
+    
+        .modalText .format-text {
+            margin-top: 5px;
+        }
+    
+        .futureText {
+            padding: 60px 20px;
+        }
+    
+        .futureTask {
+            text-align: center;
+    
+        }
+    
+        .futureText p {
+            color: #FFEEAD;
+            font-size: 18px;
+        }
+}
+
+/* Для планшетів (ширина екрану до 768px)
+@media (max-width: 768px) {
+    .wrapper {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .calendar {
+        gap: 20px 5px;
+    }
+
+    .dayBlock,
+    .dayDone {
+        width: 150px;
+        height: 150px;
+    }
+
+    p {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    #dayNumber {
+        font-size: 60px;
+    }
+
+    .surprise,
+    .futureModal {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+
+        .modalText p {
+            font-size: 18px;
+        }
+    
+        .modalText .word-text,
+        .modalText .format-text {
+            font-size: 18px;
+            line-height: 1;
+           
+        }
+    
+        .modalText .word-text {
+            font-weight: 400;
+        }
+    
+        .modalText .format-text {
+            margin-top: 5px;
+        }
+    
+        .futureText {
+            padding: 60px 20px;
+        }
+    
+        .futureTask {
+            text-align: center;
+    
+        }
+    
+        .futureText p {
+            color: #FFEEAD;
+            font-size: 18px;
+        }
+}  */
+
