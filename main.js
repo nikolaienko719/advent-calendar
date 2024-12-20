@@ -85,7 +85,7 @@ $(document).ready(function () {
 
     // Зберігаємо дані про завдання як data-атрибути
     if (todaysDate >= day) {
-      const taskIndex = day - 1; // Індекс у масиві (починається з 0)
+      const taskIndex = day - 20; // Індекс у масиві (починається з 0)
       const taskText = tasks[taskIndex];
       const titleText = titles[taskIndex];
       const wordText = `Ключ-слово до завдання: ${words[taskIndex]}`; // Формуємо шаблонний текст
