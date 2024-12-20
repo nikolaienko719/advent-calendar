@@ -1,7 +1,7 @@
 body {
     margin: 0;
     background-color: #648A7B;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url(images/christmas_background.jpg);
     background-size: cover;
         background-position: center;
@@ -11,21 +11,31 @@ body {
         align-items: center;
 }
 
+
+
 .wrapper {
     position: relative;
     z-index: 0;
-    width: 1000px;
-    height: 850px;
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
     padding: 40px;
     background-color: rgb(21, 20, 20);
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+    margin: auto;
     border-radius: 10px;
     box-shadow: 40px 30px 30px rgba(11, 20, 17, 0.743);
-    
+}
 
+@media (max-width: 480px) {
+html,
+    body {
+        height: 100%;
+        overflow-x: hidden;
+    }
+
+    .wrapper {
+        margin-top: 0;
+    }
 }
 
 h1,
@@ -492,6 +502,92 @@ p {
         height: 25px;
     }
 }
+
+
+
+/* Адаптивні стилі для мобільних телефонів */
+@media (max-width: 480px) {
+    body {
+        background-color: #648A7B;
+        /* Залишаємо лише колір */
+        background-image: none;
+        /* Видаляємо фон-зображення */
+    }
+
+    .wrapper {
+        height: auto;
+        width: 365px;
+        /* Висота необмежена */
+        padding: 30px;
+        /* Менші відступи для мобільних */
+    }
+
+    .calendar {
+        gap: 10px;
+        /* Менший відступ між блоками */
+    }
+
+        .dayBlock,
+        .dayDone {
+            width: 120px;
+            /* Зменшуємо блоки */
+            height: 120px;
+            border-width: 6px;
+            /* Тонші межі */
+        }
+
+    p {
+        font-size: 14px;
+        /* Менший розмір шрифта для мобільних */
+        line-height: 22px;
+        /* Відповідний міжрядковий інтервал */
+    }
+
+        .futureTask {
+            font-size: 18px;
+    
+        }
+    
+        .futureText p {
+            color: #FFEEAD;
+            font-size: 14px;
+        }
+
+    /* Модалка */
+    .surprise,
+    .futureModal {
+        width: 70%;
+        /* Задаємо ширину 90% екрану */
+        max-width: 300px;
+        /* Максимальна ширина модалки */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* Центруємо модалку */
+    }
+
+    .surprise-backdrop,
+    .futureModal-backdrop {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(66, 102, 88, 0.65);
+        /* Бекдроп з напівпрозорим фоном */
+    }
+
+    
+    .meme, .prophecy {
+        width: 90%; /* Ширина 90% екрану */
+        max-width: 350px; /* Максимальна ширина */
+        margin: 0 auto; /* Центрування */
+    }
+
+    .meme p, .prophecy p {
+        font-size: 14px; /* Зменшення розміру тексту */
+        line-height: 1.4; /* Щільніший текст */
+    }
+}
+
+
 
 
 /* Для планшетів (ширина екрану до 768px)
